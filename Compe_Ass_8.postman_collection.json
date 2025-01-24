@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "b0076be7-6bfa-478d-b25a-e0b3f0d2ea12",
+		"name": "Compe_Ass_8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15021071"
+	},
+	"item": [
+		{
+			"name": "capitals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"response = pm.response.json();\r",
+							"console.log(\"response is \",response[0].capital[0]);\r",
+							"console.log(\"response is \",response[0].name.common);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							" var expectedcommonname =\"South Georgia\";\r",
+							"pm.test(\"common name should match\", function () {\r",
+							"    pm.expect(response[0].name.common).to.eqls(expectedcommonname)\r",
+							"});\r",
+							"\r",
+							" var expectedofficialname =\"South Georgia and the South Sandwich Islands\";\r",
+							"pm.test(\"official name should match\", function () {\r",
+							"    pm.expect(response[0].name.official).to.eqls(expectedofficialname)\r",
+							"});\r",
+							"\r",
+							"var expectednativeofficialname =\"South Georgia and the South Sandwich Islands\";\r",
+							"pm.test(\"native official name should match\", function () {\r",
+							"    pm.expect(response[0].name.nativeName.eng.official).to.eqls(expectednativeofficialname)\r",
+							"});\r",
+							"\r",
+							"var expectednativecommonname =\"South Georgia\";\r",
+							"pm.test(\"ntive common name should match\", function () {\r",
+							"    pm.expect(response[0].name.nativeName.eng.common).to.eqls(expectednativecommonname)\r",
+							"});\r",
+							"\r",
+							"var expstatus =\"officially-assigned\";\r",
+							"pm.test(\"capital status  should be as expected\", function () {\r",
+							"    pm.expect(response[0].status).to.eqls(expstatus)\r",
+							"});\r",
+							"\r",
+							"var expcurrencyname =\"Saint Helena pound\";\r",
+							"pm.test(\"currency name  should be as expected\", function () {\r",
+							"    pm.expect(response[0].currencies.SHP.name).to.eqls(expcurrencyname)\r",
+							"});\r",
+							"\r",
+							"var expsymbol =\"£\";\r",
+							"pm.test(\"symbol  should be as expected\", function () {\r",
+							"    pm.expect(response[0].currencies.SHP.symbol).to.eqls(expsymbol)\r",
+							"});\r",
+							"\r",
+							"var expcapital =\"King Edward Point\";\r",
+							"pm.test(\"capital  should be as expected\", function () {\r",
+							"    pm.expect(response[0].capital[0]).to.eqls(expcapital)\r",
+							"});\r",
+							"\r",
+							"var expregion = \"Antarctic\";\r",
+							"pm.test(\"region  should be as expected\", function () {\r",
+							"    pm.expect(response[0].status).to.eqls(expstatus)\r",
+							"});\r",
+							"\r",
+							"var explanguages =\"English\";\r",
+							"pm.test(\"languages  should be as expected\", function () {\r",
+							"    pm.expect(response[0].languages.eng).to.eqls(explanguages)\r",
+							"});\r",
+							"\r",
+							"var exppopulation =30;\r",
+							"pm.test(\"population  should be as expected\", function () {\r",
+							"    pm.expect(response[0].population).to.eqls(exppopulation)\r",
+							"});\r",
+							"var exparea =3903.0;\r",
+							"pm.test(\"area  should be as expected\", function () {\r",
+							"    pm.expect(response[0].area).to.eqls(exparea)\r",
+							"});\r",
+							"\r",
+							"var exptimezones =\"UTC-02:00\";\r",
+							"pm.test(\"timezones  should be as expected\", function () {\r",
+							"    pm.expect(response[0].timezones[0]).to.eqls(exptimezones)\r",
+							"});\r",
+							"\r",
+							"var expcontinents =\"Antarctica\";\r",
+							"pm.test(\"continents  should be as expected\", function () {\r",
+							"    pm.expect(response[0].continents[0]).to.eqls(expcontinents)\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let capital =\"King Edward Point\";\r",
+							"//\"St. George's\",\"Bern\",\"Freetown\",\"Budapest\"]\r",
+							"pm.environment.set('capital',capital);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restcountries.com/v3.1/capital/{{capital}}",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v3.1",
+						"capital",
+						"{{capital}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "specific_capital",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"response = pm.response.json();\r",
+							"console.log(\"response is \",response[0].capital[0]);\r",
+							"console.log(\"response is \",response[0].name.common);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							" var expectedcommonname =\"Estonia\";\r",
+							"pm.test(\"common name should match\", function () {\r",
+							"    pm.expect(response[0].name.common).to.eqls(expectedcommonname)\r",
+							"});\r",
+							"\r",
+							" var expectedofficialname =\"Republic of Estonia\";\r",
+							"pm.test(\"official name should match\", function () {\r",
+							"    pm.expect(response[0].name.official).to.eqls(expectedofficialname)\r",
+							"});\r",
+							"\r",
+							"var expectednativeofficialname =\"Eesti Vabariik\";\r",
+							"pm.test(\"native official name should match\", function () {\r",
+							"    pm.expect(response[0].name.nativeName.est.official).to.eqls(expectednativeofficialname)\r",
+							"});\r",
+							"\r",
+							"var expectednativecommonname =\"Eesti\";\r",
+							"pm.test(\"ntive common name should match\", function () {\r",
+							"    pm.expect(response[0].name.nativeName.est.common).to.eqls(expectednativecommonname)\r",
+							"});\r",
+							"\r",
+							"var expstatus =\"officially-assigned\";\r",
+							"pm.test(\"capital status  should be as expected\", function () {\r",
+							"    pm.expect(response[0].status).to.eqls(expstatus)\r",
+							"});\r",
+							"\r",
+							"var expcurrencyname =\"Euro\";\r",
+							"pm.test(\"currency name  should be as expected\", function () {\r",
+							"    pm.expect(response[0].currencies.EUR.name).to.eqls(expcurrencyname)\r",
+							"});\r",
+							"\r",
+							"var expsymbol =\"€\";\r",
+							"pm.test(\"currency symbol  should be as expected\", function () {\r",
+							"    pm.expect(response[0].currencies.EUR.symbol).to.eqls(expsymbol)\r",
+							"});\r",
+							"\r",
+							"var expcapital =\"Tallinn\";\r",
+							"pm.test(\"capital  should be as expected\", function () {\r",
+							"    pm.expect(response[0].capital[0]).to.eqls(expcapital)\r",
+							"});\r",
+							"\r",
+							"var expregion = \"Europe\";\r",
+							"pm.test(\"region  should be as expected\", function () {\r",
+							"    pm.expect(response[0].region).to.eqls(expregion)\r",
+							"});\r",
+							"\r",
+							"var expsubregion = \"Northern Europe\";\r",
+							"pm.test(\"region  should be as expected\", function () {\r",
+							"    pm.expect(response[0].subregion).to.eqls(expsubregion)\r",
+							"});\r",
+							"\r",
+							"var explanguages =\"Estonian\";\r",
+							"pm.test(\"languages  should be as expected\", function () {\r",
+							"    pm.expect(response[0].languages.est).to.eqls(explanguages)\r",
+							"});\r",
+							"\r",
+							"var exppopulation =1331057;\r",
+							"pm.test(\"population  should be as expected\", function () {\r",
+							"    pm.expect(response[0].population).to.eqls(exppopulation)\r",
+							"});\r",
+							"var exparea =45227.0;\r",
+							"pm.test(\"area  should be as expected\", function () {\r",
+							"    pm.expect(response[0].area).to.eqls(exparea)\r",
+							"});\r",
+							"\r",
+							"var exptimezones =\"UTC+02:00\";\r",
+							"pm.test(\"timezones  should be as expected\", function () {\r",
+							"    pm.expect(response[0].timezones[0]).to.eqls(exptimezones)\r",
+							"});\r",
+							"\r",
+							"var expcontinents =\"Europe\";\r",
+							"pm.test(\"continents  should be as expected\", function () {\r",
+							"    pm.expect(response[0].continents[0]).to.eqls(expcontinents)\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let capital =\"King Edward Point\";\r",
+							"//\"St. George's\",\"Bern\",\"Freetown\",\"Budapest\"]\r",
+							"pm.environment.set('capital',capital);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restcountries.com/v3.1/capital/tallinn",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v3.1",
+						"capital",
+						"tallinn"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
